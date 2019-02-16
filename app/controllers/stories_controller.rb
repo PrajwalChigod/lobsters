@@ -60,6 +60,18 @@ class StoriesController < ApplicationController
     end
   end
 
+  def summary
+    @title = "Summary"
+    @story ||= Story.where(short_id: params[:id]).first!
+    open("http://api.smmry.com/&SM_API_KEY=F7A33208A1&SM_URL=" + @story.url) do |f|
+      page_string = f.read
+      my_data = JSON.parse(page_string)
+      @data = my_data["sm_api_content"]
+      end
+    render :action => "summary"
+  end
+
+
   def fetch_url_attributes
     s = Story.new
     s.fetching_ip = request.remote_ip

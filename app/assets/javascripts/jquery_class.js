@@ -62,3 +62,12 @@
     return Class;
   };
 })();
+ 
+// function handle_summary(event) {
+//   summary_id = event.target.getAttribute("summary_id")
+//   console.log(summary_id)
+  
+//   $.get('/s/'+summary_id+ '/summary',(data, status)=>{
+//     console.log(data);
+//   });
+// }

@@ -31,10 +31,10 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
           "original submitter" %>]
       <% end %>
     </span>
-    <% if story.markeddown_description.present? %>
+    <!--<% if story.markeddown_description.present? %>
       <a class="description_present" title="<%= truncate(story.description,
         :length => 500) %>" href="<%= story.comments_path %>">&#x2636;</a>
-    <% end %>
+    <% end %>-->
     <% if story.can_be_seen_by_user?(@user) %>
       <span class="tags">
         <% story.tags.each do |tag| %>
@@ -133,6 +133,8 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
           | <%= link_to "suggest", story_suggest_path(story.short_id),
             :class => "suggester" %>
         <% end %>
+        | <a class="description_present"
+           href="<%= summary_path(story.short_id) %>">summary</a>
         <% if !story.is_gone? && @user %>
           <% if @user && story.vote && story.vote[:vote] == -1 %>
             | <a class="flagger">unflag (<%=

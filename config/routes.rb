@@ -110,7 +110,8 @@ Rails.application.routes.draw do
   # deprecated
   get "/s/:story_id/:title/comments/:id" => "comments#redirect_from_short_id"
 
-  get "/s/:id/(:title)" => "stories#show"
+  get "/s/:id/(:title)/summary" => "stories#summary", :as => "summary"
+
 
   get "/u" => "users#tree"
   get "/u/:username" => "users#show", :as => "user"

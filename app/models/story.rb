@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'json'
+
 class Story < ApplicationRecord
   belongs_to :user
   belongs_to :merged_into_story,
@@ -400,6 +403,16 @@ class Story < ApplicationRecord
   def comments_url
     "#{short_id_url}/#{self.title_as_url}"
   end
+
+  # def get_summary
+    # open("http://api.smmry.com/&SM_API_KEY=F7A33208A1&SM_URL=self.url") do |f|
+      # page_string = f.read
+      # my_data = JSON.parse(page_string)
+      # puts my_data["sm_api_content"]
+      # @data = "My Summary Data"
+      # @url = self.url
+    # end
+  # end
 
   def description=(desc)
     self[:description] = desc.to_s.rstrip
